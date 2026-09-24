@@ -11,8 +11,8 @@ export default function Hero() {
     <section className="hero">
       <div className="hero__media">
         <img
-          src="https://picsum.photos/seed/theni-hero-landscape/1600/900"
-          alt="Hills and greenery of the Theni landscape"
+          src="https://tse4.mm.bing.net/th/id/OIP.aiAPKEbu0SuHi5M7E-1b6AHaD4?r=0&pid=Api&h=220&P=0"
+          alt="Scenic Theni landscape"
         />
         <div className="hero__scrim" />
       </div>
