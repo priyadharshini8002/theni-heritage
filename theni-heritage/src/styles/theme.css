@@ -1,0 +1,245 @@
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+@import '@fontsource/fraunces/600-italic.css';
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/700.css';
+
+:root {
+  /* Color system — heritage + nature */
+  --forest-900: #16281c;
+  --forest-800: #1f3d2b;
+  --forest-700: #2a4f38;
+  --green-600: #4c7a57;
+  --green-500: #5f9068;
+  --green-100: #e4ede4;
+  --gold-600: #c1922f;
+  --gold-500: #d8a44c;
+  --gold-300: #ecc784;
+  --gold-100: #f8e9c9;
+  --cream-100: #fbf7ee;
+  --cream-200: #f4ecdb;
+  --white: #ffffff;
+  --charcoal-900: #2b2b26;
+  --charcoal-600: #5a584f;
+  --charcoal-400: #8a877a;
+  --line: #e4ddca;
+  --danger: #b3492f;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(22, 40, 28, 0.06), 0 8px 24px rgba(22, 40, 28, 0.08);
+  --shadow-lift: 0 2px 4px rgba(22, 40, 28, 0.08), 0 16px 40px rgba(22, 40, 28, 0.14);
+
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-sm: 8px;
+
+  --container-max: 1320px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream-100);
+  color: var(--charcoal-900);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--forest-900);
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 18px;
+  }
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold-600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--gold-500);
+  color: var(--forest-900);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  background: var(--gold-600);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--white);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-forest {
+  background: var(--forest-800);
+  color: var(--cream-100);
+}
+
+.btn-forest:hover {
+  background: var(--forest-900);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--forest-800);
+  border-color: var(--line);
+}
+
+.btn-ghost:hover {
+  background: var(--green-100);
+}
+
+.btn-sm {
+  padding: 9px 18px;
+  font-size: 0.85rem;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--green-600);
+}
+
+.section {
+  padding: 88px 0;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 60px 0;
+  }
+}
+
+.section-head {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  margin-bottom: 12px;
+}
+
+.section-head p {
+  color: var(--charcoal-600);
+  font-size: 1.05rem;
+}
+
+.card-surface {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(22, 40, 28, 0.05);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--forest-900);
+  color: var(--cream-100);
+  padding: 12px 20px;
+  z-index: 999;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

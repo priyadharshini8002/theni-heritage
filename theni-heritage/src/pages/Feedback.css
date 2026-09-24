@@ -1,0 +1,107 @@
+.feedback-page__container {
+  max-width: 720px;
+}
+
+.feedback-page__note {
+  background: var(--gold-100);
+  color: var(--forest-900);
+  border: 1px solid var(--gold-300);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin-bottom: 24px;
+}
+
+.feedback-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 32px;
+}
+
+.feedback-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feedback-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.feedback-form__field label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--forest-900);
+}
+
+.feedback-form__field input,
+.feedback-form__field select,
+.feedback-form__field textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--cream-100);
+  color: var(--charcoal-900);
+  resize: vertical;
+}
+
+.feedback-form__field input[aria-invalid],
+.feedback-form__field textarea[aria-invalid] {
+  border-color: var(--danger);
+}
+
+.feedback-form__error {
+  color: var(--danger);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.feedback-form__upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--charcoal-600);
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: var(--cream-100);
+}
+
+.feedback-form__upload:hover {
+  border-color: var(--green-500);
+}
+
+.feedback-form__submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 8px;
+}
+
+.feedback-page__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 80px 20px;
+  color: var(--green-600);
+}
+
+.feedback-page__success p {
+  color: var(--forest-900);
+  font-size: 1.15rem;
+  font-weight: 600;
+  max-width: 380px;
+}
+
+@media (max-width: 640px) {
+  .feedback-form {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
