@@ -1,12 +1,32 @@
 .explore-page__controls {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   margin-bottom: 40px;
 }
 
 .explore-page__controls .search-bar {
-  max-width: 520px;
+  width: min(100%, 520px);
+  margin: 0 auto;
+}
+
+.explore-page .section-head {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.explore-page .section-head h1 {
+  text-align: center;
+}
+
+.explore-page .section-head p {
+  text-align: center;
+}
+
+.filter-bar {
+  justify-content: center;
 }
 
 .explore-page__grid {
