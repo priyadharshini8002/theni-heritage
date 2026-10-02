@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Search, MapPin, UtensilsCrossed, BedDouble } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,8 +10,11 @@ export default function SearchOverlay({ onClose }) {
   const inputRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onClose();
     };

@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Search, Languages, Heart, User, Leaf } from 'lucide-react';
+import { Menu, X, Languages, Heart, User, Leaf } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import SearchOverlay from './SearchOverlay';
 import './Navbar.css';
 
 const navItems = [
@@ -17,7 +16,6 @@ const navItems = [
 export default function Navbar() {
   const { t, lang, toggleLang } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const menuRef = useRef(null);
@@ -58,14 +56,6 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar__actions">
-          <button
-            type="button"
-            className="navbar__icon-btn"
-            onClick={() => setSearchOpen(true)}
-            aria-label="Search"
-          >
-            <Search size={19} />
-          </button>
           <button
             type="button"
             className="navbar__icon-btn navbar__lang"
@@ -119,8 +109,6 @@ export default function Navbar() {
           </NavLink>
         </nav>
       </div>
-
-      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }
