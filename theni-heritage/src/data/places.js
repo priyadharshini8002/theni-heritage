@@ -7,14 +7,10 @@ export const places = [
     id: 'suruli-falls',
     name: { en: 'Suruli Falls', ta: 'சுருளி அருவி' },
     category: 'nature',
-    location: { en: 'Suruli, near Theni', ta: 'சுருளி, தேனி அருகில்' },
-    coords: { lat: 9.9878, lng: 77.2951 },
-    image: 'https://picsum.photos/seed/suruli-falls-main/900/650',
-    gallery: [
-      'https://picsum.photos/seed/suruli-falls-1/900/650',
-      'https://picsum.photos/seed/suruli-falls-2/900/650',
-      'https://picsum.photos/seed/suruli-falls-3/900/650',
-    ],
+    alsoCategories: ['tourist'],
+    location: { en: 'Suruli Reserve Forest, near Cumbum, Theni district', ta: 'சுருளி காப்புக்காடு, கம்பம் அருகில், தேனி மாவட்டம்' },
+    coords: { lat: 9.6552222, lng: 77.309054 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Suruli_Falls.jpg',
     description: {
       en: 'A seasonal waterfall cascading through rock terraces on the way toward the Western Ghats, popular during monsoon months.',
       ta: 'மேற்குத் தொடர்ச்சி மலைப் பகுதிக்குச் செல்லும் வழியில் அமைந்த பருவகால அருவி, மழைக்காலத்தில் அதிக பார்வையாளர்களை ஈர்க்கும்.',
@@ -24,8 +20,8 @@ export const places = [
       ta: 'சுருளி அருவி, சமவெளியிலிருந்து மலைப் பகுதிக்குச் செல்லும் பழைய பாதையில் அமைந்துள்ளது. பருவத்திற்கேற்ப நீரோட்டம் மாறுபடும், எனவே செல்வதற்கு முன் நிலவரத்தை அறிந்து கொள்வது நல்லது.',
     },
     howToReach: {
-      en: 'About 25 km from Theni town by road; regular buses and taxis run from Theni and Cumbum.',
-      ta: 'தேனி நகரிலிருந்து சுமார் 25 கி.மீ. தூரம்; தேனி மற்றும் கம்பம் இருந்து பேருந்துகள், டாக்சிகள் கிடைக்கும்.',
+      en: 'About 56 km from Theni and 10 km from Cumbum by road; local buses and taxis serve the area.',
+      ta: 'தேனியிலிருந்து சுமார் 56 கி.மீ., கம்பத்திலிருந்து 10 கி.மீ. சாலைப் பயணம்; உள்ளூர் பேருந்துகள் மற்றும் டாக்சிகள் கிடைக்கும்.',
     },
     expense: { en: '₹50 – ₹150 per person (entry + local transport)', ta: '₹50 – ₹150 ஒரு நபருக்கு (நுழைவு + உள்ளூர் போக்குவரத்து)' },
     bestTime: { en: 'July to January, after monsoon rains', ta: 'ஜூலை முதல் ஜனவரி வரை, மழைக்குப் பிறகு' },
@@ -36,11 +32,121 @@ export const places = [
     featured: true,
   },
   {
+    id: 'kumbakkarai-falls',
+    name: { en: 'Kumbakkarai Falls', ta: 'கும்பக்கரை அருவி' },
+    category: 'nature',
+    location: { en: 'Kumbakkarai, 9 km from Periyakulam, Theni district', ta: 'கும்பக்கரை, பெரியகுளத்திலிருந்து 9 கி.மீ., தேனி மாவட்டம்' },
+    coords: { lat: 10.1803695, lng: 77.5307187 },
+    image: 'https://www.indianholiday.com/wordpress/wp-content/uploads/2021/12/Kumbakkarai-Falls-in-Theni-District.jpg',
+    description: {
+      en: 'A rocky cascade and bathing pools at the foothills of the Kodaikanal Hills near Periyakulam.',
+      ta: 'பெரியகுளம் அருகே கொடைக்கானல் மலை அடிவாரத்தில் அமைந்த பாறை அருவியும் நீர்த் தேக்கங்களும்.',
+    },
+    history: {
+      en: 'Kumbakkarai Falls is a natural watercourse in the Kodaikanal foothills and a long-standing excursion spot for nearby Periyakulam.',
+      ta: 'கொடைக்கானல் மலை அடிவாரத்தின் இயற்கை நீர்வழியான கும்பக்கரை அருவி, அருகிலுள்ள பெரியகுள மக்களின் நீண்டகால சுற்றுலாத் தலமாகும்.',
+    },
+    howToReach: {
+      en: 'About 9 km from Periyakulam by road; follow Kumbakkarai Road and check local access conditions before travelling.',
+      ta: 'பெரியகுளத்திலிருந்து சுமார் 9 கி.மீ. சாலை வழி; கும்பக்கரை சாலையில் சென்று, பயணத்திற்கு முன் உள்ளூர் அணுகல் நிலையைச் சரிபார்க்கவும்.',
+    },
+    expense: { en: 'Check current entry and parking charges locally', ta: 'நுழைவு மற்றும் வாகன நிறுத்தக் கட்டணங்களை உள்ளூரில் சரிபார்க்கவும்' },
+    bestTime: { en: 'After the monsoon, when water flow is good and access is open', ta: 'மழைக்காலத்திற்குப் பின் நீரோட்டம் நன்றாகவும் அணுகல் திறந்தும் இருக்கும் போது' },
+    importantInfo: {
+      en: 'Water depth and flow vary by season; follow local safety instructions around the pools.',
+      ta: 'பருவத்திற்கேற்ப நீரின் ஆழமும் ஓட்டமும் மாறும்; நீர்த் தேக்கங்களருகே உள்ளூர் பாதுகாப்பு அறிவுறுத்தல்களைப் பின்பற்றவும்.',
+    },
+    featured: false,
+  },
+  {
+    id: 'chinna-suruli-falls',
+    name: { en: 'Chinna Suruli Falls', ta: 'சின்ன சுருளி அருவி' },
+    category: 'nature',
+    location: { en: 'Near Kombaithozhu village, Theni district', ta: 'கொம்பைத்தொழு கிராமம் அருகில், தேனி மாவட்டம்' },
+    coords: { lat: 9.7097894, lng: 77.4224702 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Chinna_suruli.jpg',
+    description: {
+      en: 'Also called Cloud Land Falls, this cascade flows from the Meghamalai range near Kombaithozhu.',
+      ta: 'மேகமலைத் தொடரிலிருந்து கொம்பைத்தொழு அருகே பாயும் இந்த அருவி கிளவுட் லேண்ட் அருவி என்றும் அழைக்கப்படுகிறது.',
+    },
+    history: {
+      en: 'Chinna Suruli is a natural waterfall fed by streams from the Meghamalai hills and is locally known as Cloud Land Falls.',
+      ta: 'மேகமலை மலைநீரோடைகளால் உருவாகும் சின்ன சுருளி அருவி, உள்ளூரில் கிளவுட் லேண்ட் அருவி என அழைக்கப்படுகிறது.',
+    },
+    howToReach: {
+      en: 'About 54 km from Theni, near Kombaithozhu village; access is by road followed by a walk, depending on conditions.',
+      ta: 'தேனியிலிருந்து சுமார் 54 கி.மீ., கொம்பைத்தொழு அருகில்; சாலைப் பயணத்திற்குப் பின் நிலைமையைப் பொறுத்து நடந்து செல்ல வேண்டும்.',
+    },
+    expense: { en: 'Check current access and local transport information', ta: 'தற்போதைய அணுகல் மற்றும் உள்ளூர் போக்குவரத்து தகவலைச் சரிபார்க்கவும்' },
+    bestTime: { en: 'After the monsoon; check water levels and access before setting out', ta: 'மழைக்காலத்திற்குப் பின்; புறப்படும் முன் நீர்மட்டம் மற்றும் அணுகலைச் சரிபார்க்கவும்' },
+    importantInfo: {
+      en: 'The approach can be uneven and slippery near the falls; follow local safety guidance.',
+      ta: 'அருவி அருகிலுள்ள பாதை சீரற்றதாகவும் வழுக்கலாகவும் இருக்கலாம்; உள்ளூர் பாதுகாப்பு வழிகாட்டுதல்களைப் பின்பற்றவும்.',
+    },
+    featured: false,
+  },
+  {
+    id: 'bodi-mettu',
+    name: { en: 'Bodi Mettu', ta: 'போடிமெட்டு' },
+    category: 'nature',
+    location: { en: 'Bodi Mettu, near the Kerala border, Theni district', ta: 'கேரள எல்லை அருகில், போடிமெட்டு, தேனி மாவட்டம்' },
+    coords: { lat: 10.0182872, lng: 77.2658288 },
+    image: 'https://cdn.s3waas.gov.in/s39a96876e2f8f3dc4f3cf45f02c61c0c1/uploads/2018/04/2018041179.jpg',
+    description: {
+      en: 'A Western Ghats hill locality on the Madurai–Kochi highway, known for its highland views and forested slopes.',
+      ta: 'மதுரை–கொச்சி நெடுஞ்சாலையில் அமைந்த மேற்குத் தொடர்ச்சி மலைப்பகுதி; உயர்நிலக் காட்சிகளும் வனச்சரிவுகளும் கொண்டது.',
+    },
+    history: {
+      en: 'Bodi Mettu is a border hill locality on the historic road corridor connecting the Theni plains with the high ranges toward Kerala.',
+      ta: 'தேனி சமவெளியையும் கேரள உயர்மலைப் பகுதிகளையும் இணைக்கும் பழமையான சாலைப் பாதையில் உள்ள எல்லை மலைக் குடியிருப்பு போடிமெட்டு.',
+    },
+    howToReach: {
+      en: 'Reach Bodi Mettu by road on the Chinnamanur–Bodinayakanur–Munnar route; check mountain-road conditions before travelling.',
+      ta: 'சின்னமனூர்–போடிநாயக்கனூர்–மூணாறு சாலை வழியாக போடிமெட்டுவை அடையலாம்; மலைச்சாலை நிலையை முன்கூட்டியே சரிபார்க்கவும்.',
+    },
+    expense: { en: 'Travel costs vary; no separate attraction fee information verified', ta: 'பயணச் செலவு மாறுபடும்; தனி நுழைவுக் கட்டணம் உறுதிப்படுத்தப்படவில்லை' },
+    bestTime: { en: 'October to March for clearer hill views', ta: 'தெளிவான மலைக் காட்சிகளுக்கு அக்டோபர் முதல் மார்ச் வரை' },
+    importantInfo: {
+      en: 'Mountain weather can change quickly; use caution on the winding highway.',
+      ta: 'மலை வானிலை விரைவாக மாறக்கூடும்; வளைவுகள் நிறைந்த நெடுஞ்சாலையில் எச்சரிக்கையாகச் செல்லவும்.',
+    },
+    featured: false,
+  },
+  {
+    id: 'highwavys',
+    name: { en: 'Highwavys / High Wavy Mountains', ta: 'ஹைவேவிஸ் மலைத்தொடர்' },
+    category: 'nature',
+    location: { en: 'Highwavys, Meghamalai range, Theni district', ta: 'ஹைவேவிஸ், மேகமலைத் தொடர், தேனி மாவட்டம்' },
+    coords: { lat: 9.638057, lng: 77.3548448 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/View_of_Highwavys_estate_lake_Theni_district%2C_Tamil_Nadu.jpg',
+    description: {
+      en: 'The High Wavy Mountains are a tea-growing hill region of the Western Ghats, with estate lakes and forested slopes.',
+      ta: 'மேற்குத் தொடர்ச்சி மலையில் தேயிலைத் தோட்டங்கள், ஏரிகள் மற்றும் வனச்சரிவுகள் கொண்ட மலைப்பகுதி ஹைவேவிஸ்.',
+    },
+    history: {
+      en: 'The High Wavys estate landscape developed with plantation activity and remains part of the wider Meghamalai hill region.',
+      ta: 'தோட்டத் தொழிலின் வளர்ச்சியுடன் உருவான ஹைவேவிஸ் தோட்டப் பகுதி, பரந்த மேகமலை மலைப்பகுதியின் ஓர் அங்கமாக உள்ளது.',
+    },
+    howToReach: {
+      en: 'Reach the hills by road from Theni via Chinnamanur; confirm current forest access and road conditions.',
+      ta: 'சின்னமனூர் வழியாக தேனியிலிருந்து சாலை மார்க்கமாக மலைப்பகுதியை அடையலாம்; வன அனுமதி மற்றும் சாலை நிலையை உறுதிப்படுத்தவும்.',
+    },
+    expense: { en: 'Travel costs vary; check any current permit requirements', ta: 'பயணச் செலவு மாறுபடும்; தற்போதைய அனுமதி தேவைகளைச் சரிபார்க்கவும்' },
+    bestTime: { en: 'November to February; check weather and road access', ta: 'நவம்பர் முதல் பிப்ரவரி வரை; வானிலை மற்றும் சாலை அணுகலைச் சரிபார்க்கவும்' },
+    importantInfo: {
+      en: 'This is an active hill-estate region with limited services and patchy mobile coverage.',
+      ta: 'இது செயல்பாட்டிலுள்ள மலைத் தோட்டப் பகுதி; சேவைகள் குறைவாகவும் மொபைல் இணைப்பு நிலையற்றதாகவும் இருக்கலாம்.',
+    },
+    featured: false,
+  },
+  {
     id: 'meghamalai',
     name: { en: 'Megamalai', ta: 'மேகமலை' },
     category: 'historic',
-    location: { en: 'Meghamalai Hills, Theni district', ta: 'மேகமலை மலைப்பகுதி, தேனி மாவட்டம்' },
-    coords: { lat: 9.679206, lng: 77.385055 },
+    alsoCategories: ['tourist'],
+    categoryNames: { tourist: { en: 'Meghamalai', ta: 'மேகமலை' } },
+    location: { en: 'Meghamalai, High Wavy Mountains, Theni district', ta: 'மேகமலை, ஹைவேவிஸ் மலைத்தொடர், தேனி மாவட்டம்' },
+    coords: { lat: 9.6461181, lng: 77.4013403 },
     image: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Megamalai_-_3.jpg',
     description: {
       en: 'A historic Western Ghats hill region known for its tea estates, forest landscapes and High Wavys heritage.',
@@ -65,15 +171,10 @@ export const places = [
   {
     id: 'vaigai-dam',
     name: { en: 'Vaigai Dam', ta: 'வைகை அணை' },
-    category: 'nature',
+    category: 'tourist',
     location: { en: 'Andipatti, Theni district', ta: 'ஆண்டிப்பட்டி, தேனி மாவட்டம்' },
-    coords: { lat: 9.9264, lng: 77.4661 },
-    image: 'https://picsum.photos/seed/vaigai-dam-main/900/650',
-    gallery: [
-      'https://picsum.photos/seed/vaigai-dam-1/900/650',
-      'https://picsum.photos/seed/vaigai-dam-2/900/650',
-      'https://picsum.photos/seed/vaigai-dam-3/900/650',
-    ],
+    coords: { lat: 10.0530763, lng: 77.5916688 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Vaigai_Dam%2C_Theni_district%2C_Tamil_Nadu%2C_India.jpg',
     description: {
       en: 'A major irrigation reservoir across the Vaigai river with landscaped gardens and a musical fountain near the dam site.',
       ta: 'வைகை ஆற்றின் குறுக்கே கட்டப்பட்ட முக்கிய நீர்ப்பாசன அணை, தோட்டங்கள் மற்றும் இசை நீரூற்று.',
@@ -126,12 +227,8 @@ export const places = [
     name: { en: 'Kurangani', ta: 'குரங்கணி' },
     category: 'tourist',
     location: { en: 'Kurangani Hills, near Bodinayakanur', ta: 'குரங்கணி மலைப்பகுதி, போடிநாயக்கனூர் அருகில்' },
-    coords: { lat: 10.1197, lng: 77.3742 },
-    image: 'https://picsum.photos/seed/kurangani-main/900/650',
-    gallery: [
-      'https://picsum.photos/seed/kurangani-1/900/650',
-      'https://picsum.photos/seed/kurangani-2/900/650',
-    ],
+    coords: { lat: 10.0837502, lng: 77.2487773 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Kurangani_hills.jpg',
     description: {
       en: 'A trekker\'s village at the base of trails leading up to Top Station and the Kerala border, known for grassland ridges and viewpoints.',
       ta: 'டாப் ஸ்டேஷன் மற்றும் கேரள எல்லைக்குச் செல்லும் மலையேற்றப் பாதைகளின் அடிவாரத்தில் அமைந்த கிராமம்.',
@@ -155,25 +252,21 @@ export const places = [
   {
     id: 'sothuparai-dam',
     name: { en: 'Sothuparai Dam', ta: 'சோத்துப்பாறை அணை' },
-    category: 'nature',
-    location: { en: 'Near Bodinayakanur, Theni district', ta: 'போடிநாயக்கனூர் அருகில், தேனி மாவட்டம்' },
-    coords: { lat: 10.0505, lng: 77.3411 },
-    image: 'https://picsum.photos/seed/sothuparai-dam-main/900/650',
-    gallery: [
-      'https://picsum.photos/seed/sothuparai-dam-1/900/650',
-      'https://picsum.photos/seed/sothuparai-dam-2/900/650',
-    ],
+    category: 'tourist',
+    location: { en: 'Near Periyakulam, Theni district', ta: 'பெரியகுளம் அருகில், தேனி மாவட்டம்' },
+    coords: { lat: 10.1306819, lng: 77.4638758 },
+    image: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Sothuparai_Dam_-_panoramio.jpg',
     description: {
       en: 'A reservoir set against the Western Ghats foothills, popular for boating and quiet picnic spots.',
       ta: 'மேற்குத் தொடர்ச்சி மலை அடிவாரத்தில் அமைந்த அணை, படகுச் சவாரி மற்றும் அமைதியான உலா செல்லும் இடம்.',
     },
     history: {
-      en: 'Built to support irrigation for surrounding farmland, the dam has since become a popular day-trip destination for visitors from Theni and Bodinayakanur.',
-      ta: 'சுற்றியுள்ள விவசாய நிலங்களுக்கு நீர்ப்பாசனம் அளிக்க கட்டப்பட்டது; தற்போது ஒரு நாள் உல்லாசப் பயணத்திற்கு பிரபலமான இடம்.',
+      en: 'The reservoir was built to support irrigation in the Periyakulam area and is now a scenic stop at the edge of the Kodaikanal foothills.',
+      ta: 'பெரியகுளம் பகுதியில் நீர்ப்பாசனத்திற்கு அமைக்கப்பட்ட இந்த நீர்த்தேக்கம், தற்போது கொடைக்கானல் மலை அடிவாரத்தின் இயற்கைக் காட்சியிடமாக உள்ளது.',
     },
     howToReach: {
-      en: '12 km from Bodinayakanur, easily reached by local transport.',
-      ta: 'போடிநாயக்கனூரிலிருந்து 12 கி.மீ., உள்ளூர் போக்குவரத்தில் எளிதில் அடையலாம்.',
+      en: 'Reach the dam by road from Periyakulam via Vellagavi; check road conditions before travelling.',
+      ta: 'வெல்லகவி வழியாக பெரியகுளத்திலிருந்து சாலை மார்க்கமாக அணையை அடையலாம்; பயணத்திற்கு முன் சாலை நிலையைச் சரிபார்க்கவும்.',
     },
     expense: { en: '₹50 – ₹200 per person (boating extra)', ta: '₹50 – ₹200 ஒரு நபருக்கு (படகுச் சவாரி தனி)' },
     bestTime: { en: 'September to February', ta: 'செப்டம்பர் முதல் பிப்ரவரி வரை' },
@@ -268,5 +361,7 @@ export const places = [
 
 export const getPlaceById = (id) => places.find((p) => p.id === id);
 export const getFeaturedPlaces = () => places.filter((p) => p.featured);
+export const matchesPlaceCategory = (place, categoryId) =>
+  place.category === categoryId || place.alsoCategories?.includes(categoryId);
 export const getPlacesByCategory = (categoryId) =>
-  categoryId === 'all' ? places : places.filter((p) => p.category === categoryId);
+  categoryId === 'all' ? places : places.filter((p) => matchesPlaceCategory(p, categoryId));

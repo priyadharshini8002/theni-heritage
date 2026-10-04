@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 import FilterBar from '../components/FilterBar';
 import PlaceCard from '../components/PlaceCard';
 import EmptyState from '../components/EmptyState';
-import { places } from '../data/places';
+import { matchesPlaceCategory, places } from '../data/places';
 import './Explore.css';
 
 const filterKeys = [
@@ -32,7 +32,7 @@ export default function Explore() {
   }, [query, category]);
 
   const filtered = useMemo(() => {
-    let list = category === 'all' ? places : places.filter((p) => p.category === category);
+    let list = category === 'all' ? places : places.filter((p) => matchesPlaceCategory(p, category));
     if (query.trim()) {
       const q = query.trim().toLowerCase();
       list = list.filter(
@@ -66,7 +66,7 @@ export default function Explore() {
         ) : (
           <div className="explore-page__grid">
             {filtered.map((place) => (
-              <PlaceCard key={place.id} place={place} />
+                <PlaceCard key={place.id} place={place} categoryId={category === 'all' ? undefined : category} />
             ))}
           </div>
         )}
