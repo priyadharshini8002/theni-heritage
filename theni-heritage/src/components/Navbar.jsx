@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Languages, Heart, User, Leaf } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_UPDATED_EVENT, readSavedProfile } from '../utils/profileStorage';
 import './Navbar.css';
 
 const navItems = [
@@ -17,8 +18,10 @@ export default function Navbar() {
   const { t, lang, toggleLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hasProfile, setHasProfile] = useState(() => Boolean(readSavedProfile()));
   const location = useLocation();
   const menuRef = useRef(null);
+  const profileLabel = hasProfile ? 'Update Profile' : 'Profile Creation';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,6 +32,16 @@ export default function Navbar() {
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const updateProfileStatus = () => setHasProfile(Boolean(readSavedProfile()));
+    window.addEventListener(PROFILE_UPDATED_EVENT, updateProfileStatus);
+    window.addEventListener('storage', updateProfileStatus);
+    return () => {
+      window.removeEventListener(PROFILE_UPDATED_EVENT, updateProfileStatus);
+      window.removeEventListener('storage', updateProfileStatus);
+    };
+  }, []);
 
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
@@ -68,7 +81,7 @@ export default function Navbar() {
           <NavLink to="/favorites" className="navbar__icon-btn" aria-label={t('nav_favorites')}>
             <Heart size={19} />
           </NavLink>
-          <NavLink to="/profile" className="navbar__icon-btn navbar__profile" aria-label={t('nav_profile')}>
+          <NavLink to="/profile" className="navbar__icon-btn navbar__profile" aria-label={profileLabel} title={profileLabel}>
             <User size={19} />
           </NavLink>
 
@@ -105,7 +118,7 @@ export default function Navbar() {
             {t('nav_favorites')}
           </NavLink>
           <NavLink to="/profile" className="navbar__mobile-link" onClick={() => setOpen(false)}>
-            {t('nav_profile')}
+            <User size={17} /> {profileLabel}
           </NavLink>
         </nav>
       </div>
