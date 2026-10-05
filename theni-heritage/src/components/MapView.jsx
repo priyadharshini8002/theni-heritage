@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { Link } from 'react-router-dom';
@@ -44,14 +44,26 @@ function categoryGroup(category) {
   return 'heritage';
 }
 
-function FlyToUser({ position }) {
+function CurrentLocationMarker({ position, icon, t }) {
   const map = useMap();
+  const markerRef = useRef(null);
+
   useEffect(() => {
-    if (position) {
-      map.flyTo([position.lat, position.lng], 12, { duration: 1 });
-    }
+    map.flyTo([position.lat, position.lng], 16, { duration: 1 });
+    markerRef.current?.openPopup();
   }, [position, map]);
-  return null;
+
+  return (
+    <Marker ref={markerRef} position={[position.lat, position.lng]} icon={icon}>
+      <Popup>
+        <strong>{t('you_are_here')}</strong>
+        <br />
+        {t('latitude')}: {position.lat.toFixed(6)}
+        <br />
+        {t('longitude')}: {position.lng.toFixed(6)}
+      </Popup>
+    </Marker>
+  );
 }
 
 const filterOptions = [
@@ -122,8 +134,10 @@ export default function MapView() {
     try {
       const loc = await getCurrentLocation();
       setUserLocation(loc);
-    } catch {
-      setLocationError(t('location_denied'));
+    } catch (error) {
+      setLocationError(
+        error.code === 1 ? t('location_permission_required') : t('location_unavailable')
+      );
     } finally {
       setLocating(false);
     }
@@ -184,12 +198,7 @@ export default function MapView() {
           })}
 
           {userLocation && (
-            <>
-              <Marker position={[userLocation.lat, userLocation.lng]} icon={icons.user}>
-                <Popup>{t('my_location')}</Popup>
-              </Marker>
-              <FlyToUser position={userLocation} />
-            </>
+            <CurrentLocationMarker position={userLocation} icon={icons.user} t={t} />
           )}
         </MapContainer>
       </div>
