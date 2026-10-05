@@ -137,6 +137,17 @@
   gap: 18px;
 }
 
+.place-details__nearby-title {
+  margin: 22px 0 12px;
+  color: var(--forest-900);
+  font-size: 1.05rem;
+}
+
+.place-details__nearby-empty {
+  color: var(--charcoal-600);
+  font-size: 0.9rem;
+}
+
 .place-details__sidebar {
   position: sticky;
   top: 96px;

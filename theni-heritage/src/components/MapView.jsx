@@ -7,7 +7,14 @@ import { useLanguage } from '../context/LanguageContext';
 import { places } from '../data/places';
 import { foodItems } from '../data/food';
 import { stays } from '../data/stays';
-import { THENI_CENTER, distanceKm, formatDistance, getCurrentLocation } from '../utils/geo';
+import {
+  THENI_CENTER,
+  distanceKm,
+  formatDistance,
+  getCurrentLocation,
+  getFoodMapCoordinates,
+  getStayMapCoordinates,
+} from '../utils/geo';
 import 'leaflet/dist/leaflet.css';
 import './MapView.css';
 
@@ -101,9 +108,7 @@ export default function MapView() {
       foodItems.map((f, i) => ({
         id: `food-${f.id}`,
         group: 'food',
-        // Food items don't carry exact coordinates yet — scatter near town centre as an approximation.
-        lat: THENI_CENTER.lat + (((i * 37) % 10) - 5) * 0.01,
-        lng: THENI_CENTER.lng + (((i * 53) % 10) - 5) * 0.01,
+        ...getFoodMapCoordinates(i),
         name: f.name[lang],
         image: f.image,
         detailPath: '/food',
@@ -116,8 +121,7 @@ export default function MapView() {
       stays.map((s, i) => ({
         id: `stay-${s.id}`,
         group: 'stay',
-        lat: THENI_CENTER.lat + (((i * 41) % 10) - 5) * 0.012,
-        lng: THENI_CENTER.lng + (((i * 29) % 10) - 5) * 0.012,
+        ...getStayMapCoordinates(i),
         name: s.name[lang],
         image: s.image,
         detailPath: '/stay',

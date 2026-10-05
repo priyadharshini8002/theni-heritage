@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { openGoogleMapsSearch } from '../utils/geo';
 import './FoodStayCard.css';
 
-export default function StayCard({ stay, onViewDetails }) {
+export default function StayCard({ stay, onViewDetails, distanceLabel }) {
   const { lang, t } = useLanguage();
   const type = stay.category === 'hotels'
     ? (lang === 'ta' ? 'ஹோட்டல்' : 'Hotel')
@@ -22,10 +22,13 @@ export default function StayCard({ stay, onViewDetails }) {
           <h3>{stay.name[lang]}</h3>
         </div>
         <p className="mini-card__location"><MapPin size={13} /> {stay.location[lang]}</p>
+        {distanceLabel && <p className="mini-card__location">{t('distance')}: {distanceLabel}</p>}
         <p className="mini-card__location">{lang === 'ta' ? 'வகை: ' : 'Type: '}{type}</p>
-        <p className="mini-card__price mini-card__price--block">
-          {t('approx_price')}: {stay.priceRange[lang]}
-        </p>
+        {stay.priceRange?.[lang] && (
+          <p className="mini-card__price mini-card__price--block">
+            {t('approx_price')}: {stay.priceRange[lang]}
+          </p>
+        )}
         <p className="mini-card__desc">{stay.description[lang]}</p>
         <div className="mini-card__actions">
           {onViewDetails && (

@@ -14,11 +14,28 @@ import { useLanguage } from '../context/LanguageContext';
 import FavoriteButton from '../components/FavoriteButton';
 import FoodCard from '../components/FoodCard';
 import StayCard from '../components/StayCard';
+import Modal from '../components/Modal';
 import { getPlaceById } from '../data/places';
 import { foodItems } from '../data/food';
 import { stays } from '../data/stays';
-import { openExternalNavigation } from '../utils/geo';
+import {
+  distanceKm,
+  formatDistance,
+  getFoodMapCoordinates,
+  getStayMapCoordinates,
+  openGoogleMapsSearch,
+  THENI_CENTER,
+} from '../utils/geo';
 import './PlaceDetails.css';
+
+const NEARBY_OPTION_COUNT = 3;
+
+function getItemCoordinates(item, fallbackCoordinates) {
+  if (Number.isFinite(item.coords?.lat) && Number.isFinite(item.coords?.lng)) {
+    return item.coords;
+  }
+  return fallbackCoordinates;
+}
 
 export default function PlaceDetails() {
   const { id } = useParams();
@@ -26,12 +43,52 @@ export default function PlaceDetails() {
   const place = getPlaceById(id);
   const [activeImage, setActiveImage] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [selectedNearby, setSelectedNearby] = useState(null);
 
   if (!place) return <Navigate to="/explore" replace />;
 
   const gallery = [place.image, ...(place.gallery || [])].filter(Boolean);
-  const nearbyFood = foodItems.slice(0, 3);
-  const nearbyStays = stays.slice(0, 2);
+  const hasPlaceCoordinates =
+    Number.isFinite(place.coords?.lat) && Number.isFinite(place.coords?.lng);
+  const origin = hasPlaceCoordinates ? place.coords : THENI_CENTER;
+  const nearbyFood = foodItems
+    .map((item, index) => {
+      const coordinates = getItemCoordinates(item, getFoodMapCoordinates(index));
+      return {
+        item,
+        distance: distanceKm(origin.lat, origin.lng, coordinates.lat, coordinates.lng),
+      };
+    })
+    .sort((a, b) => a.distance - b.distance)
+    .slice(0, NEARBY_OPTION_COUNT);
+  const nearbyStays = stays
+    .map((item, index) => {
+      const coordinates = getItemCoordinates(item, getStayMapCoordinates(index));
+      return {
+        item,
+        distance: distanceKm(origin.lat, origin.lng, coordinates.lat, coordinates.lng),
+      };
+    })
+    .sort((a, b) => a.distance - b.distance)
+    .slice(0, NEARBY_OPTION_COUNT);
+  const selectedNearbyCoordinates = selectedNearby
+    ? getItemCoordinates(
+      selectedNearby.item,
+      selectedNearby.type === 'food'
+        ? getFoodMapCoordinates(foodItems.findIndex((item) => item.id === selectedNearby.item.id))
+        : getStayMapCoordinates(stays.findIndex((item) => item.id === selectedNearby.item.id))
+    )
+    : null;
+
+  const handleNearbyNavigate = (item) =>
+    openGoogleMapsSearch(`${item.name.en} ${item.location.en}`);
+  const nearbyType = selectedNearby?.type === 'food'
+    ? t('filter_restaurants')
+    : selectedNearby?.item.category === 'hotels'
+      ? (lang === 'ta' ? 'ஹோட்டல்' : 'Hotel')
+      : selectedNearby?.item.category === 'resorts'
+        ? (lang === 'ta' ? 'ரிசார்ட்' : 'Resort')
+        : selectedNearby?.item.stayType?.[lang];
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -134,14 +191,29 @@ export default function PlaceDetails() {
 
             <section className="place-details__section">
               <h2><UtensilsCrossed size={17} /> {t('nearby_food_stay')}</h2>
+              {!hasPlaceCoordinates && (
+                <p className="place-details__nearby-empty">{t('nearby_distance_from_center')}</p>
+              )}
+              <h3 className="place-details__nearby-title">{t('nearby_food')}</h3>
               <div className="place-details__nearby-grid">
-                {nearbyFood.map((f) => (
-                  <FoodCard key={f.id} item={f} />
+                {nearbyFood.map(({ item, distance }) => (
+                  <FoodCard
+                    key={item.id}
+                    item={item}
+                    distanceLabel={formatDistance(distance)}
+                    onViewDetails={(restaurant) => setSelectedNearby({ type: 'food', item: restaurant })}
+                  />
                 ))}
               </div>
-              <div className="place-details__nearby-grid" style={{ marginTop: 20 }}>
-                {nearbyStays.map((s) => (
-                  <StayCard key={s.id} stay={s} />
+              <h3 className="place-details__nearby-title">{t('nearby_stay')}</h3>
+              <div className="place-details__nearby-grid">
+                {nearbyStays.map(({ item, distance }) => (
+                  <StayCard
+                    key={item.id}
+                    stay={item}
+                    distanceLabel={formatDistance(distance)}
+                    onViewDetails={(accommodation) => setSelectedNearby({ type: 'stay', item: accommodation })}
+                  />
                 ))}
               </div>
             </section>
@@ -152,8 +224,7 @@ export default function PlaceDetails() {
               <button
                 type="button"
                 className="btn btn-primary place-details__nav-btn"
-                onClick={() => place.coords && openExternalNavigation(place.coords.lat, place.coords.lng, place.name.en)}
-                disabled={!place.coords}
+                onClick={() => openGoogleMapsSearch(`${place.name.en}, ${place.location.en}`)}
               >
                 <Route size={17} /> {t('navigate')}
               </button>
@@ -162,6 +233,41 @@ export default function PlaceDetails() {
           </aside>
         </div>
       </div>
+      {selectedNearby && (
+        <Modal
+          title={selectedNearby.item.name[lang]}
+          onClose={() => setSelectedNearby(null)}
+        >
+          <div className="stay-details">
+            <dl className="stay-details__list">
+              <div><dt>📍 {t('detail_location')}</dt><dd>{selectedNearby.item.location[lang]}</dd></div>
+              <div>
+                <dt>{selectedNearby.type === 'food' ? `🍴 ${t('food_cuisine')}` : `🏨 ${t('detail_type')}`}</dt>
+                <dd>{selectedNearby.type === 'food' ? selectedNearby.item.cuisine[lang] : nearbyType}</dd>
+              </div>
+              {selectedNearby.type === 'stay' && selectedNearby.item.priceRange?.[lang] && (
+                <div><dt>💰 {t('approx_price')}</dt><dd>{selectedNearby.item.priceRange[lang]}</dd></div>
+              )}
+              <div><dt>📍 {t('distance')}</dt><dd>{formatDistance(
+                distanceKm(origin.lat, origin.lng, selectedNearbyCoordinates.lat, selectedNearbyCoordinates.lng)
+              )}</dd></div>
+              <div><dt>📝 {t('detail_description')}</dt><dd>{selectedNearby.item.description[lang]}</dd></div>
+            </dl>
+            <div className="mini-card__actions">
+              <button
+                type="button"
+                className="btn btn-forest btn-sm"
+                onClick={() => handleNearbyNavigate(selectedNearby.item)}
+              >
+                📍 {t('navigate')}
+              </button>
+              <button type="button" className="btn btn-ghost btn-sm" onClick={() => setSelectedNearby(null)}>
+                {t('close')}
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

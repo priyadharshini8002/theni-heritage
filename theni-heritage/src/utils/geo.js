@@ -21,6 +21,20 @@ export function formatDistance(km) {
 // Theni town centre — used as a sensible default map center / fallback location.
 export const THENI_CENTER = { lat: 10.0104, lng: 77.4768 };
 
+export function getFoodMapCoordinates(index) {
+  return {
+    lat: THENI_CENTER.lat + (((index * 37) % 10) - 5) * 0.01,
+    lng: THENI_CENTER.lng + (((index * 53) % 10) - 5) * 0.01,
+  };
+}
+
+export function getStayMapCoordinates(index) {
+  return {
+    lat: THENI_CENTER.lat + (((index * 41) % 10) - 5) * 0.012,
+    lng: THENI_CENTER.lng + (((index * 29) % 10) - 5) * 0.012,
+  };
+}
+
 export function getCurrentLocation() {
   return new Promise((resolve, reject) => {
     if (!('geolocation' in navigator)) {
