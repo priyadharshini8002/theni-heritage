@@ -13,7 +13,7 @@ export default function PlaceCard({ place, categoryId }) {
   return (
     <article className="place-card card-surface">
       <Link to={`/place/${place.id}`} className="place-card__media" aria-label={name}>
-        <img src={place.image} alt={name} loading="lazy" />
+        {place.image && <img src={place.image} alt={name} loading="lazy" />}
         {category && <span className="place-card__tag">{category.label[lang]}</span>}
         <FavoriteButton id={place.id} className="place-card__fav" />
       </Link>

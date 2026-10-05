@@ -71,7 +71,7 @@ export default function MapView() {
 
   const placeMarkers = useMemo(
     () =>
-      places.map((p) => ({
+      places.filter((p) => p.coords && Number.isFinite(p.coords.lat) && Number.isFinite(p.coords.lng)).map((p) => ({
         id: `place-${p.id}`,
         group: categoryGroup(p.category),
         lat: p.coords.lat,
@@ -169,7 +169,7 @@ export default function MapView() {
               <Marker key={m.id} position={[m.lat, m.lng]} icon={icons[m.group]}>
                 <Popup>
                   <div className="map-popup">
-                    <img src={m.image} alt={m.name} />
+                    {m.image && <img src={m.image} alt={m.name} />}
                     <div className="map-popup__body">
                       <strong>{m.name}</strong>
                       {dist !== null && <span className="map-popup__dist">{formatDistance(dist)} {t('distance_away')}</span>}

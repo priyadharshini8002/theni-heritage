@@ -1,0 +1,25 @@
+.food-details__list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.food-details__list dt {
+  color: var(--charcoal-600);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.food-details__list dd {
+  margin: 4px 0 0;
+  color: var(--charcoal-600);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.food-details__notice {
+  margin: 0 0 16px;
+  color: var(--charcoal-400);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}

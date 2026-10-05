@@ -24,3 +24,7 @@
   border-color: var(--forest-800);
   color: var(--cream-100);
 }
+
+.filter-bar__pill--active:focus-visible {
+  outline: none;
+}

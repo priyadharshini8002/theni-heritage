@@ -66,6 +66,7 @@
 
 .mini-card__price--block {
   display: block;
+  white-space: normal;
 }
 
 .mini-card__location {

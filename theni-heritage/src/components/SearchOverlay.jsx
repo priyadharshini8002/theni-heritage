@@ -97,7 +97,7 @@ export default function SearchOverlay({ onClose }) {
                 <h3><BedDouble size={14} /> {t('nav_stay')}</h3>
                 {results.stays.map((s) => (
                   <button key={s.id} className="search-overlay__item" onClick={() => go('/stay')}>
-                    <img src={s.image} alt="" />
+                    {s.image && <img src={s.image} alt="" />}
                     <div>
                       <strong>{s.name[lang]}</strong>
                       <span>{s.location[lang]}</span>

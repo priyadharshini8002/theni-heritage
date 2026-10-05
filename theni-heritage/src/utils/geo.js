@@ -48,3 +48,9 @@ export function openLocationSearch(query) {
   window.open(url, '_blank', 'noopener,noreferrer');
   return url;
 }
+
+export function openGoogleMapsSearch(query) {
+  const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+  return url;
+}

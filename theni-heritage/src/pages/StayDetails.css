@@ -1,0 +1,30 @@
+.stay-details__list {
+  display: grid;
+  gap: 14px;
+}
+
+.stay-details__list dt,
+.stay-details__description h4 {
+  color: var(--charcoal-600);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.stay-details__list dd,
+.stay-details__description p {
+  margin: 4px 0 0;
+  color: var(--charcoal-600);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.stay-details__description {
+  margin-top: 18px;
+}
+
+.stay-details__notice {
+  margin: 16px 0;
+  color: var(--charcoal-400);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}

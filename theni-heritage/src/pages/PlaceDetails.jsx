@@ -29,7 +29,7 @@ export default function PlaceDetails() {
 
   if (!place) return <Navigate to="/explore" replace />;
 
-  const gallery = [place.image, ...(place.gallery || [])];
+  const gallery = [place.image, ...(place.gallery || [])].filter(Boolean);
   const nearbyFood = foodItems.slice(0, 3);
   const nearbyStays = stays.slice(0, 2);
 
@@ -65,7 +65,7 @@ export default function PlaceDetails() {
 
         <div className="place-details__gallery">
           <div className="place-details__gallery-main">
-            <img src={gallery[activeImage]} alt={place.name[lang]} />
+            {gallery[activeImage] && <img src={gallery[activeImage]} alt={place.name[lang]} />}
           </div>
           {gallery.length > 1 && (
             <div className="place-details__gallery-thumbs">
@@ -152,7 +152,8 @@ export default function PlaceDetails() {
               <button
                 type="button"
                 className="btn btn-primary place-details__nav-btn"
-                onClick={() => openExternalNavigation(place.coords.lat, place.coords.lng, place.name.en)}
+                onClick={() => place.coords && openExternalNavigation(place.coords.lat, place.coords.lng, place.name.en)}
+                disabled={!place.coords}
               >
                 <Route size={17} /> {t('navigate')}
               </button>
