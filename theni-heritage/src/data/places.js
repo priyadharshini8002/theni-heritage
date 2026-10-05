@@ -401,7 +401,8 @@ export const places = [
     category: 'religious',
     location: { en: 'Sothuparai area, Periyakulam, Theni District', ta: 'சோத்துப்பாறை பகுதி, பெரியகுளம், தேனி மாவட்டம்' },
     coords: null,
-    image: null,
+    image: 'https://5.imimg.com/data5/SELLER/Default/2026/1/577417000/JX/WV/DT/257525935/theni-periyakulam-kumbakarai-sothuparai-manjalaru-dam-and-devadhana-patty-tour-package-1000x1000.jpg',
+    imageSource: 'https://5.imimg.com/data5/SELLER/Default/2026/1/577417000/JX/WV/DT/257525935/theni-periyakulam-kumbakarai-sothuparai-manjalaru-dam-and-devadhana-patty-tour-package-1000x1000.jpg',
     description: {
       en: 'A temple in the Sothuparai area of Periyakulam, Theni District.',
       ta: 'தேனி மாவட்டம், பெரியகுளத்தின் சோத்துப்பாறை பகுதியில் அமைந்த கோயில்.',
@@ -419,7 +420,8 @@ export const places = [
     category: 'religious',
     location: { en: 'Chinnamanur, Theni District', ta: 'சின்னமனூர், தேனி மாவட்டம்' },
     coords: null,
-    image: null,
+    image: 'https://1.bp.blogspot.com/-j4Tl3Na5Q6U/X2DvVV0tpJI/AAAAAAABq8Y/DBRB35ivqSYJwD1KtoMHfhb3LslZ2dXnwCLcBGAsYHQ/s1024/Kailasanathar%2Bkovil.jpg',
+    imageSource: 'https://1.bp.blogspot.com/-j4Tl3Na5Q6U/X2DvVV0tpJI/AAAAAAABq8Y/DBRB35ivqSYJwD1KtoMHfhb3LslZ2dXnwCLcBGAsYHQ/s1024/Kailasanathar%2Bkovil.jpg',
     description: {
       en: 'A Kailasanathar temple in Chinnamanur, Theni District.',
       ta: 'தேனி மாவட்டம், சின்னமனூரில் அமைந்த கைலாசநாதர் கோயில்.',
@@ -437,7 +439,8 @@ export const places = [
     category: 'religious',
     location: { en: 'Bodinayakanur, Theni District', ta: 'போடிநாயக்கனூர், தேனி மாவட்டம்' },
     coords: null,
-    image: null,
+    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e3/d2/2b/caption.jpg?w=1200&h=1200&s=1',
+    imageSource: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e3/d2/2b/caption.jpg?w=1200&h=1200&s=1',
     description: {
       en: 'A Mariamman temple in Bodinayakanur, Theni District.',
       ta: 'தேனி மாவட்டம், போடிநாயக்கனூரில் அமைந்த மாரியம்மன் கோயில்.',
