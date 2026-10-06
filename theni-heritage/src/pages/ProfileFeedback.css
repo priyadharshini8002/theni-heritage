@@ -1,0 +1,126 @@
+.profile-feedback {
+  min-height: 68vh;
+  background:
+    radial-gradient(ellipse at 90% 5%, rgba(216, 164, 76, 0.1), transparent 34%),
+    var(--cream-100);
+}
+
+.profile-feedback__container {
+  max-width: 760px;
+}
+
+.profile-feedback__header {
+  margin-bottom: 28px;
+}
+
+.profile-feedback__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: clamp(20px, 4vw, 34px);
+}
+
+.profile-feedback__field {
+  display: grid;
+  gap: 7px;
+  color: var(--forest-900);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.profile-feedback__field > input,
+.profile-feedback__field > textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fffefa;
+  color: var(--charcoal-900);
+  font: inherit;
+  font-weight: 500;
+}
+
+.profile-feedback__field > textarea {
+  resize: vertical;
+}
+
+.profile-feedback__field--full,
+.profile-feedback__rating,
+.profile-feedback__error,
+.profile-feedback__submit {
+  grid-column: 1 / -1;
+}
+
+.profile-feedback__rating {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.profile-feedback__rating legend {
+  margin-bottom: 8px;
+  color: var(--forest-900);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.profile-feedback__stars {
+  display: flex;
+  gap: 5px;
+}
+
+.profile-feedback__star {
+  display: grid;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: #b9b29e;
+}
+
+.profile-feedback__star--selected {
+  color: var(--gold-600);
+}
+
+.profile-feedback__error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.profile-feedback__submit {
+  justify-self: start;
+  margin-top: 4px;
+}
+
+.profile-feedback__submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.profile-feedback__success {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 56px 20px;
+  color: var(--green-600);
+  text-align: center;
+}
+
+.profile-feedback__success p {
+  color: var(--forest-900);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .profile-feedback__form {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-feedback__submit {
+    width: 100%;
+  }
+}

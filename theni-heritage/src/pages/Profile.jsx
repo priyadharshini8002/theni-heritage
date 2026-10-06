@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Camera, Mail, MapPin, Pencil, Phone, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, ClipboardList, Mail, MapPin, MessageSquareText, Pencil, Phone, User } from 'lucide-react';
 import { PROFILE_STORAGE_KEY, PROFILE_UPDATED_EVENT, readSavedProfile } from '../utils/profileStorage';
 import './Profile.css';
 
@@ -144,7 +145,7 @@ export default function Profile() {
           </svg>
         </section>
 
-        <section className="card-surface profile-page__panel">
+        <section id="profile-form" className="card-surface profile-page__panel">
           {successMessage && <p className="profile-page__message profile-page__message--success" role="status">{successMessage}</p>}
           {saveError && <p className="profile-page__message profile-page__message--error" role="alert">{saveError}</p>}
 
@@ -236,6 +237,24 @@ export default function Profile() {
             </div>
           )}
         </section>
+        <nav className="profile-page__options" aria-label="Profile options">
+          <Link className="profile-page__option card-surface" to="/profile/todo">
+            <span className="profile-page__option-icon"><ClipboardList size={21} /></span>
+            <span className="profile-page__option-copy">
+              <strong>My To-Do List</strong>
+              <span>Open To-Do List</span>
+            </span>
+            <span className="profile-page__option-arrow" aria-hidden="true">→</span>
+          </Link>
+          <Link className="profile-page__option card-surface" to="/profile/feedback">
+            <span className="profile-page__option-icon"><MessageSquareText size={21} /></span>
+            <span className="profile-page__option-copy">
+              <strong>Feedback</strong>
+              <span>Open Feedback</span>
+            </span>
+            <span className="profile-page__option-arrow" aria-hidden="true">→</span>
+          </Link>
+        </nav>
       </div>
     </div>
   );

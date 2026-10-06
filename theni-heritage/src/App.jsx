@@ -13,6 +13,8 @@ import Food from './pages/Food';
 import Stay from './pages/Stay';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
+import ToDoList from './pages/ToDoList';
+import ProfileFeedback from './pages/ProfileFeedback';
 import About from './pages/About';
 import Feedback from './pages/Feedback';
 import NotFound from './pages/NotFound';
@@ -37,6 +39,8 @@ export default function App() {
               <Route path="/stay" element={<Stay />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/todo" element={<ToDoList />} />
+              <Route path="/profile/feedback" element={<ProfileFeedback />} />
               <Route path="/about" element={<About />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="*" element={<NotFound />} />

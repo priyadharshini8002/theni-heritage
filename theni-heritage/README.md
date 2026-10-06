@@ -41,6 +41,8 @@ theni-heritage/
 │   │   ├── ListingPage.css     # shared grid styles for Food/Stay/Favorites
 │   │   ├── Favorites.jsx
 │   │   ├── Profile.jsx / .css
+│   │   ├── ToDoList.jsx / .css
+│   │   ├── ProfileFeedback.jsx / .css
 │   │   ├── About.jsx / .css
 │   │   ├── Feedback.jsx / .css
 │   │   └── NotFound.jsx
@@ -63,6 +65,8 @@ theni-heritage/
 │   ├── App.jsx                 # routes + providers
 │   └── main.jsx                # entry point
 ├── index.html
+├── google-apps-script/
+│   └── Code.gs              # Google Sheets endpoint for profile feedback
 ├── .env.example
 ├── .gitignore
 ├── package.json
@@ -96,7 +100,7 @@ The site works immediately after `npm install && npm run dev` — no configurati
 
 ## 3. Firebase Setup (Optional)
 
-The **Feedback / Suggest a Place** form works out of the box using `localStorage`. To store submissions in the cloud instead:
+The existing **Suggest a Place** form works out of the box using `localStorage`. To store its submissions in the cloud instead:
 
 1. Create a project at [console.firebase.google.com](https://console.firebase.google.com).
 2. Enable **Firestore Database** (Native mode) and **Storage**.
@@ -134,11 +138,27 @@ service cloud.firestore {
 }
 ```
 
-If `.env` is missing or incomplete, `src/services/firebase.js` detects this automatically (`isFirebaseConfigured`) and every submission silently falls back to `localStorage` — the app never breaks.
+If `.env` is missing or incomplete, `src/services/firebase.js` detects this automatically (`isFirebaseConfigured`) and place suggestions fall back to `localStorage`. Profile Feedback is separate and requires its Google Apps Script endpoint; it never reports success when that endpoint is unavailable.
 
 ---
 
-## 4. How the Major Features Work
+## 4. Profile To-Do List and Google Sheets Feedback
+
+The Profile page has separate cards for Profile, My To-Do List, and Feedback. The to-do list stores tasks in this browser's `localStorage`. Profile Feedback is a separate form and submits directly to the Google Apps Script Web App; it does not use the Firebase suggestion form or store feedback locally.
+
+To connect Profile Feedback to a Google Sheet:
+
+1. Create a Google Sheet and open **Extensions → Apps Script**.
+2. Copy `google-apps-script/Code.gs` into the Apps Script editor and save it.
+3. In Apps Script, open **Project Settings → Script Properties** and add `SPREADSHEET_ID` with the ID from the Google Sheet URL. Optionally add `SHEET_NAME` (defaults to `Feedback`).
+4. Select **Deploy → New deployment → Web app**, choose **Execute as: Me** and allow access to **Anyone**, then deploy and authorize the script. The deployment creates the required `Timestamp`, `Name`, `Email`, `Rating`, and `Feedback` columns and appends each accepted submission to a new row.
+5. Copy the deployment's Web App `/exec` URL into `VITE_GOOGLE_APPS_SCRIPT_URL` in `.env` (see `.env.example`), then restart Vite or rebuild/redeploy the frontend.
+
+The Web App URL is public configuration, not a credential. Do not place Google account credentials or private keys in the frontend. A blank/misconfigured URL or failed request displays “Unable to submit feedback. Please try again.” and does not report success.
+
+---
+
+## 5. How the Major Features Work
 
 - **Navigation & mobile menu** — `Navbar.jsx` uses React Router `NavLink`s; below 960px it collapses into a hamburger-triggered slide-down menu.
 - **Search** — `utils/search.js` does a case-insensitive match across `places`, `food`, and `stays` in both languages. Used by the hero/explore inline `SearchBar` (with live suggestions) and the navbar's full `SearchOverlay` modal.
@@ -147,13 +167,14 @@ If `.env` is missing or incomplete, `src/services/firebase.js` detects this auto
 - **Map** — `MapView.jsx` renders Leaflet + OpenStreetMap tiles (no API key required), with color-coded custom SVG markers for heritage/nature/food/stay, category filters, and a "My Location" button using the browser Geolocation API. If permission is denied or unsupported, a friendly message is shown and the map keeps working.
 - **Navigate button** — opens OpenStreetMap directions (place pages, which have coordinates) or an OpenStreetMap search (food/stay cards, which only have a text location) in a new tab — no paid routing API needed.
 - **Language toggle** — `LanguageContext.jsx` swaps a `lang` value (`en`/`ta`) used by `t(key)` throughout the app, persisted to `localStorage`. All nav labels, buttons, headings, and page copy are translated via `data/translations.js`; content records (`places.js`, `food.js`, `stays.js`) carry `{ en, ta }` pairs per field.
-- **Suggest a Place / Feedback** — `Feedback.jsx` is a validated form (required: name, place name, description, location). On submit it calls `services/firebase.js`, which writes to Firestore (+ Storage for the photo) when configured, or to `localStorage` otherwise.
+- **Suggest a Place** — the existing `/feedback` route remains a validated form (required: name, place name, description, location). On submit it calls `services/firebase.js`, which writes to Firestore (+ Storage for the photo) when configured, or to `localStorage` otherwise.
+- **Profile tools** — `/profile/todo` provides a persistent, filterable checklist; `/profile/feedback` submits name, email, rating, and comments to the configured Google Apps Script endpoint.
 - **Responsive layout** — CSS Grid/Flexbox with breakpoints at 980px/960px/640px/520px across every page; cards collapse from 3–4 columns → 2 → 1; the navbar becomes a hamburger menu; the map shortens on mobile.
 - **Accessibility** — semantic landmarks (`header`, `main`, `footer`, `nav`), a "Skip to content" link, `alt` text on every image, visible focus rings (`:focus-visible`), `aria-label`/`aria-pressed`/`aria-expanded` on icon-only controls, and form labels tied to inputs via `htmlFor`/`id`.
 
 ---
 
-## 5. Data Editing
+## 6. Data Editing
 
 All tourism content lives in `src/data/*.js` as plain arrays/objects, deliberately separate from components. To add or correct a place, food item, or stay, edit the relevant file — no component code needs to change. Every text field is bilingual: `{ en: '...', ta: '...' }`.
 
